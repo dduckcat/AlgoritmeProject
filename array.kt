@@ -65,9 +65,12 @@ fun uniqueNumbers(numbers: Array<Int>){
     if (i > 1) println("В последовательности есть неуникальные числа")
     else println("Все числа в последовательности уникальны")
 }
-fun divide15(numbers: Array<Int>) {
-    for (i in numbers)
-        if (i % 15 == 0) print("$i\t")
+fun divide15(vararg number: Int) {
+    for (i in number){
+        when (i % 15){
+            0 -> print("$i ")
+        }
+    }
 }
 fun convertToIntArray(numbersChar: Array<Char>): Array<Int>{
     var numbersInt: Array<Int> = arrayOf()

@@ -101,3 +101,15 @@ fun depositSum(sumUser: Float, time: Int) {
     for (n in 1..time) sum += sum * 0.07F
     println("После $time $timeN сумма вклада составит $sum")
 }
+fun heightComparison(h1: Float, h2: Float){
+    fun validHeight(h:Float): Boolean = h in 120F..220F
+    if (!validHeight(h1) && !validHeight(h2)){
+        println("Некорректный рост")
+        return
+    }
+    when {
+        h1 > h2 -> println("Первый студент выше второго")
+        h1 == h2 -> println("Эти студенты одного роста")
+        else -> println("Второй студент выше первого")
+    }
+}

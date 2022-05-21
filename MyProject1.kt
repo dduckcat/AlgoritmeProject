@@ -31,6 +31,7 @@ fun main() {
             |4. Тетрация
             |5. Арифметическая прогрессия
             |6. Треугольник Паскаля
+            |7. Сравнить рост двух студентов
             |
             |0. Вернуться в предыдущее меню
         """.trimMargin()
@@ -39,11 +40,13 @@ fun main() {
                                 1 -> {
                                     while (true) {
                                         try{
-                                            println("Введите сумму вклада:")
+                                            println("Введите сумму вклада Затем срко велада в месяцах:")
                                             val sum = readLine()!!.toFloat()
-                                            println("Введите срок вклада в месяцах:")
                                             val period = readLine()!!.toInt()
-                                            depositSum(sum, period)
+                                            depositSum(
+                                                time = period,
+                                                sumUser = sum
+                                            )
                                         }catch (n: NumberFormatException){
                                             println("Сумму и срок вклада нужно ввести целыми числами")
                                         }finally {
@@ -119,6 +122,24 @@ fun main() {
                                         }
                                         askRepeat()
                                         if (readLine() == "0") break
+                                    }
+                                }
+                                7 -> {
+                                    while (true) {
+                                        try {
+                                            println("Введите рост первого студента")
+                                            val height1 = readLine()!!.toFloat()
+                                            println("Введите рост второго студента")
+                                            val height2 = readLine()!!.toFloat()
+                                            heightComparison(
+                                                h1 = height1,
+                                                h2 = height2
+                                            )
+                                        }catch (n: NumberFormatException){
+                                        println("Некорректный ввод. Нужно ввести в виде чисел")
+                                    }
+                                    askRepeat()
+                                    if (readLine() == "0") break
                                     }
                                 }
                                 0 -> break
@@ -221,7 +242,7 @@ fun main() {
                                     while (true) {
                                         try {
                                             println("Введите последовательность чисел через запятую")
-                                            divide15(convertToIntArray(readLine()!!.toCharArray().toTypedArray()))
+                                            divide15(*convertToIntArray(readLine()!!.toCharArray().toTypedArray()).toIntArray())
                                         }catch (n: NumberFormatException) {
                                             println("Нужно было ввести последовательность чисел через запятую без лишних символов")
                                         }
@@ -275,12 +296,10 @@ fun main() {
             }
     }
 }
-fun askRepeat(){
-    println(
+fun askRepeat() = println(
         """
             |
             | Введите любой символ, чтобы повторить
             | 0. Вернуться в предыдущее меню
            """.trimMargin()
     )
-}
