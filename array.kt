@@ -65,9 +65,9 @@ fun uniqueNumbers(numbers: Array<Int>){
     if (i > 1) println("В последовательности есть неуникальные числа")
     else println("Все числа в последовательности уникальны")
 }
-fun divide15(vararg number: Int) {
+inline fun divideOperation(vararg number: Int, div: (Int)->Int) {
     for (i in number){
-        when (i % 15){
+        when (div(i)){
             0 -> print("$i ")
         }
     }

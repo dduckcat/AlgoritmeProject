@@ -1,6 +1,14 @@
 package MyProjectForGitHub
  
 fun main() {
+    val askRepeat: ()->Unit = {println(
+        """
+            |
+            | Введите любой символ, чтобы повторить
+            | 0. Вернуться в предыдущее меню
+           """.trimMargin()
+    )}
+
     println(
         """
         |
@@ -40,8 +48,9 @@ fun main() {
                                 1 -> {
                                     while (true) {
                                         try{
-                                            println("Введите сумму вклада Затем срок вклада в месяцах:")
-                                            val sum = readLine()!!.toFloat()
+                                            println("Введите сумму вклада:")
+                                            val sum = readLine()!!.toInt()
+                                            println("Введите срок вклада в месяцах:")
                                             val period = readLine()!!.toInt()
                                             depositSum(
                                                 time = period,
@@ -56,35 +65,24 @@ fun main() {
                                     }
                                 }
                                 2 -> {
-                                    while (true) {
-                                        try {
-                                            println("Введите желаемую длину последовательности чисел Фиббоначи:")
-                                            numFibonacci(readLine()!!.toInt())
-                                        }catch (n: NumberFormatException) {
-                                            println("Длина последовательности должна быть в виде целого числа")
-                                        }finally {
-                                            askRepeat()
-                                            if (readLine() == "0") break
-                                        }
-                                    }
+                                    blockWithOneParam(
+                                        text = "Введите желаемую длину последовательности чисел Фиббоначи:",
+                                        func = ::numFibonacci,
+                                        text1 = "Длина последовательности должна быть в виде целого числа"
+                                    )
                                 }
                                 3 -> {
-                                    while (true) {
-                                        try {
-                                            println("Введите высоту ёлочки:")
-                                            christmasTree(readLine()!!.toInt())
-                                        }catch (n: NumberFormatException){
-                                            println("Высота должна быть в виде целого числа")
-                                        }
-                                        askRepeat()
-                                        if (readLine() == "0") break
-                                    }
+                                    blockWithOneParam(
+                                        text = "Введите высоту елочки",
+                                        func = ::christmasTree,
+                                        text1 = "Высота должна быть в виде целого числа"
+                                    )
                                 }
                                 4 -> {
                                     while (true) {
                                         try {
                                             println("Введите целое число:")
-                                            val userNumb = readLine()!!.toLong()
+                                            val userNumb = readLine()!!.toInt()
                                             println("Введите степень тетрации в виде целого числа:")
                                             val degree = readLine()!!.toInt()
                                             tetration(userNumb, degree)
@@ -113,16 +111,11 @@ fun main() {
                                     }
                                 }
                                 6 -> {
-                                    while (true) {
-                                        try {
-                                            println("Введите необходимую высоту треугольника Паскаля:")
-                                            trianglePaskal(readLine()!!.toLong())
-                                        }catch (n: NumberFormatException){
-                                            println("Высота треугольника Паскаля должна быть в виде целого числа")
-                                        }
-                                        askRepeat()
-                                        if (readLine() == "0") break
-                                    }
+                                    blockWithOneParam(
+                                        text = "Введите необходимую высоту треугольника Паскаля:",
+                                        func = ::trianglePaskal,
+                                        text1 = "Высота треугольника Паскаля должна быть в виде целого числа"
+                                    )
                                 }
                                 7 -> {
                                     while (true) {
@@ -184,16 +177,11 @@ fun main() {
                                     }
                                 }
                                 2 -> {
-                                    while (true) {
-                                        try {
-                                            println("Введите количество секунд: ")
-                                            timeConverter(readLine()!!.toInt())
-                                        }catch (n: NumberFormatException){
-                                            println("Количество секунд должно быть в виде целого числа")
-                                        }
-                                        askRepeat()
-                                        if (readLine() == "0") break
-                                    }
+                                    blockWithOneParam(
+                                        text = "Введите количество секунд: ",
+                                        func = ::timeConverter,
+                                        text1 = "Количество секунд должно быть в виде целого числа"
+                                    )
                                 }
                                 3 -> {
                                     while (true) {
@@ -242,7 +230,10 @@ fun main() {
                                     while (true) {
                                         try {
                                             println("Введите последовательность чисел через запятую")
-                                            divide15(*convertToIntArray(readLine()!!.toCharArray().toTypedArray()).toIntArray())
+                                            val numbers = convertToIntArray(readLine()!!.toCharArray().toTypedArray()).toIntArray()
+                                            println("Введите число - делитель")
+                                            val divider = readLine()!!.toInt()
+                                            divideOperation(*numbers){it % divider}
                                         }catch (n: NumberFormatException) {
                                             println("Нужно было ввести последовательность чисел через запятую без лишних символов")
                                         }
@@ -296,11 +287,4 @@ fun main() {
             }
     }
 }
-fun askRepeat() = println(
-        """
-            |
-            | Введите любой символ, чтобы повторить
-            | 0. Вернуться в предыдущее меню
-           """.trimMargin()
-    )
 

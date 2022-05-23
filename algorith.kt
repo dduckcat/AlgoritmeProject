@@ -1,6 +1,19 @@
 package MyProjectForGitHub
 
-fun trianglePaskal (heightUser: Long){
+inline fun blockWithOneParam(text: String, func: (Int)->Unit, text1: String){
+    while (true){
+        try {
+            println(text)
+            func(readLine()!!.toInt())
+        } catch (n: NumberFormatException) {
+            println(text1)
+        }
+        askRepeat()
+        if (readLine() == "0") break
+    }
+}
+
+fun trianglePaskal (heightUser: Int){
     var height: Long
     var weight: Long
     var subtraction: Long
@@ -13,9 +26,9 @@ fun trianglePaskal (heightUser: Long){
             print ("  ")
         print("1  ")
         for (m in 1 .. n) {
-            height = n
-            weight = m
-            subtraction = n - m
+            height = n.toLong()
+            weight = m.toLong()
+            subtraction = height - weight
             for (f in 1 until height)
                 height *= f
             for (f in 1 until weight)
@@ -41,8 +54,8 @@ fun arithmeticProgression (startNum: Int, differenceProgress: Int, memberNum: In
         print(", $userNum")
     }
 }
-fun tetration (nUser: Long, nGrade: Int){
-    var nFinal = nUser
+fun tetration (nUser: Int, nGrade: Int){
+    var nFinal = nUser.toLong()
     if (nGrade == 0)
         println(1)
     else {
@@ -92,8 +105,8 @@ fun numFibonacci(a: Int){
     }
     println()
 }
-fun depositSum(sumUser: Float, time: Int) {
-    var sum = sumUser
+fun depositSum(sumUser: Int, time: Int) {
+    var sum = sumUser.toFloat()
     val timeN = when (time % 100){
         1 -> "мес€ца"
         else -> "мес€цев"
