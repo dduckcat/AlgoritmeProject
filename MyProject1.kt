@@ -40,7 +40,7 @@ fun main() {
                                 1 -> {
                                     while (true) {
                                         try{
-                                            println("Введите сумму вклада Затем срко велада в месяцах:")
+                                            println("Введите сумму вклада Затем срок вклада в месяцах:")
                                             val sum = readLine()!!.toFloat()
                                             val period = readLine()!!.toInt()
                                             depositSum(
@@ -303,3 +303,4 @@ fun askRepeat() = println(
             | 0. Вернуться в предыдущее меню
            """.trimMargin()
     )
+
