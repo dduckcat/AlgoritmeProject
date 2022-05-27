@@ -1,5 +1,7 @@
 package MyProjectForGitHub
 
+import HomeWork.askRepeat
+
 inline fun blockWithOneParam(text: String, func: (Int)->Unit, text1: String){
     while (true){
         try {
@@ -108,21 +110,21 @@ fun numFibonacci(a: Int){
 fun depositSum(sumUser: Int, time: Int) {
     var sum = sumUser.toFloat()
     val timeN = when (time % 100){
-        1 -> "месяца"
-        else -> "месяцев"
+        1 -> "РјРµСЃСЏС†Р°"
+        else -> "РјРµСЃСЏС†РµРІ"
     }
     for (n in 1..time) sum += sum * 0.07F
-    println("После $time $timeN сумма вклада составит $sum")
+    println("РџРѕСЃР»Рµ $time $timeN СЃСѓРјРјР° РІРєР»Р°РґР° СЃРѕСЃС‚Р°РІРёС‚ $sum")
 }
 fun heightComparison(h1: Float, h2: Float){
     fun validHeight(h:Float): Boolean = h in 120F..220F
     if (!validHeight(h1) && !validHeight(h2)){
-        println("Некорректный рост")
+        println("РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ СЂРѕСЃС‚")
         return
     }
     when {
-        h1 > h2 -> println("Первый студент выше второго")
-        h1 == h2 -> println("Эти студенты одного роста")
-        else -> println("Второй студент выше первого")
+        h1 > h2 -> println("РџРµСЂРІС‹Р№ СЃС‚СѓРґРµРЅС‚ РІС‹С€Рµ РІС‚РѕСЂРѕРіРѕ")
+        h1 == h2 -> println("Р­С‚Рё СЃС‚СѓРґРµРЅС‚С‹ РѕРґРЅРѕРіРѕ СЂРѕСЃС‚Р°")
+        else -> println("Р’С‚РѕСЂРѕР№ СЃС‚СѓРґРµРЅС‚ РІС‹С€Рµ РїРµСЂРІРѕРіРѕ")
     }
 }

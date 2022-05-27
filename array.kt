@@ -1,12 +1,12 @@
 package MyProjectForGitHub
 
 
-fun incorrectWord(word:CharArray):CharArray{
-    if (' ' in word) throw Exception ("Введите одно слово без пробелов")
+fun incorrectWord(word:Array<Char>):Array<Char>{
+    if (' ' in word) throw Exception ("Р’РІРµРґРёС‚Рµ РѕРґРЅРѕ СЃР»РѕРІРѕ Р±РµР· РїСЂРѕР±РµР»РѕРІ")
     return word
 }
 fun incorrectIntChoice(choice: Int, max: Int):Int{
-    if (choice !in 0..max) throw Exception ("Введите число из предложенного меню")
+    if (choice !in 0..max) throw Exception ("Р’РІРµРґРёС‚Рµ С‡РёСЃР»Рѕ РёР· РїСЂРµРґР»РѕР¶РµРЅРЅРѕРіРѕ РјРµРЅСЋ")
     return choice
 }
 fun convertToStringArray(text: Array<Char>): Array<String>{
@@ -46,8 +46,8 @@ fun wordOftenAndLonger(textUser: Array<String>){
         }
         if (wordLonger.toCharArray().size < i.toCharArray().size) wordLonger = i
     }
-    println ("""Самое часто повторяющееся слово: $wordOften
-        |Самое длинное слово: $wordLonger
+    println ("""РЎР°РјРѕРµ С‡Р°СЃС‚Рѕ РїРѕРІС‚РѕСЂСЏСЋС‰РµРµСЃСЏ СЃР»РѕРІРѕ: $wordOften
+        |РЎР°РјРѕРµ РґР»РёРЅРЅРѕРµ СЃР»РѕРІРѕ: $wordLonger
     """.trimMargin())
 }
 fun uniqueNumbers(numbers: Array<Int>){
@@ -62,8 +62,8 @@ fun uniqueNumbers(numbers: Array<Int>){
             }
         }
     }
-    if (i > 1) println("В последовательности есть неуникальные числа")
-    else println("Все числа в последовательности уникальны")
+    if (i > 1) println("Р’ РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕСЃС‚Рё РµСЃС‚СЊ РЅРµСѓРЅРёРєР°Р»СЊРЅС‹Рµ С‡РёСЃР»Р°")
+    else println("Р’СЃРµ С‡РёСЃР»Р° РІ РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕСЃС‚Рё СѓРЅРёРєР°Р»СЊРЅС‹")
 }
 inline fun divideOperation(vararg number: Int, div: (Int)->Int) {
     for (i in number){
@@ -92,13 +92,13 @@ fun firstAndLastNumber (numbers: Array<Int>){
     for (i in numbers)
         numbersRev += i
     personalReverse(numbersRev)
-    println("Первый элемент: ${numbers[0]}, последний элемент: ${numbersRev[0]}")
+    println("РџРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚: ${numbers[0]}, РїРѕСЃР»РµРґРЅРёР№ СЌР»РµРјРµРЅС‚: ${numbersRev[0]}")
 }
 fun howManySymb (text: CharArray, symb: Char){
     var result = 0
     for (i in text)
         if (i == symb) result++
-    println("Символ '$symb' встречается в тексте $result раз")
+    println("РЎРёРјРІРѕР» '$symb' РІСЃС‚СЂРµС‡Р°РµС‚СЃСЏ РІ С‚РµРєСЃС‚Рµ $result СЂР°Р·")
 }
 fun sumOfDigits (numbers: CharArray){
     var num2 = intArrayOf()
@@ -124,8 +124,8 @@ fun timeConverter (secUser: Int){
         print(":")
     }
 }
-fun palindrom (userStr: CharArray){
-    var revStr = charArrayOf()
+fun palindrom (userStr: Array<Char>){
+    var revStr = charArrayOf().toTypedArray()
     for (i in userStr)
         revStr += i
     for (i in revStr.indices){
@@ -135,6 +135,6 @@ fun palindrom (userStr: CharArray){
             revStr[revStr.size - 1 - i] = m
         }
     }
-    if (userStr.contentEquals(revStr)) println("$userStr является палиндромом")
-    else println("$userStr не является палиндромом")
+    if (userStr.contentEquals(revStr)) println("$userStr СЏРІР»СЏРµС‚СЃСЏ РїР°Р»РёРЅРґСЂРѕРјРѕРј")
+    else println("$userStr РЅРµ СЏРІР»СЏРµС‚СЃСЏ РїР°Р»РёРЅРґСЂРѕРјРѕРј")
 }

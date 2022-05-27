@@ -1,5 +1,5 @@
 package MyProjectForGitHub
- 
+
 fun main() {
     val askRepeat: ()->Unit = {println(
         """
@@ -39,53 +39,62 @@ fun main() {
             |4. Тетрация
             |5. Арифметическая прогрессия
             |6. Треугольник Паскаля
-            |7. Сравнить рост двух студентов
             |
             |0. Вернуться в предыдущее меню
         """.trimMargin()
                             )
-                            when (incorrectIntChoice(readLine()!!.toInt(), 6)) {
+                            when (incorrectIntChoice(readLine()!!.toInt(), 5)) {
                                 1 -> {
                                     while (true) {
-                                        try{
-                                            println("Введите сумму вклада:")
-                                            val sum = readLine()!!.toInt()
-                                            println("Введите срок вклада в месяцах:")
-                                            val period = readLine()!!.toInt()
-                                            depositSum(
-                                                time = period,
-                                                sumUser = sum
-                                            )
-                                        }catch (n: NumberFormatException){
+                                        try {
+                                            println("Введите срок вклада:")
+                                            val depositSum = Arithmetic(readLine()!!.toInt())
+                                            println("Введите сумму вклада")
+                                            depositSum.numb = readLine()!!.toFloat()
+                                            depositSum.printDepositSum()
+                                        } catch (n: NumberFormatException) {
                                             println("Сумму и срок вклада нужно ввести целыми числами")
-                                        }finally {
+                                        } finally {
                                             askRepeat()
                                             if (readLine() == "0") break
                                         }
                                     }
                                 }
                                 2 -> {
-                                    blockWithOneParam(
-                                        text = "Введите желаемую длину последовательности чисел Фиббоначи:",
-                                        func = ::numFibonacci,
-                                        text1 = "Длина последовательности должна быть в виде целого числа"
-                                    )
+                                    while (true) {
+                                        try {
+                                            println("Введите срок вклада:")
+                                            val fibonacci = Arithmetic(readLine()!!.toInt())
+                                            fibonacci.numFibonacci()
+                                        } catch (n: NumberFormatException) {
+                                            println("Длина последовательности должна быть в виде целого числа")
+                                        } finally {
+                                            askRepeat()
+                                            if (readLine() == "0") break
+                                        }
+                                    }
                                 }
                                 3 -> {
-                                    blockWithOneParam(
-                                        text = "Введите высоту елочки",
-                                        func = ::christmasTree,
-                                        text1 = "Высота должна быть в виде целого числа"
-                                    )
+                                    while (true) {
+                                        try {
+                                            println("Введите высоту елочки:")
+                                            val tree = Arithmetic(readLine()!!.toInt())
+                                            tree.christmasTree()
+                                        } catch (n: NumberFormatException) {
+                                            println("Высота должна быть в виде целого числа")
+                                        }
+                                        askRepeat()
+                                        if (readLine() == "0") break
+                                    }
                                 }
                                 4 -> {
                                     while (true) {
                                         try {
-                                            println("Введите целое число:")
-                                            val userNumb = readLine()!!.toInt()
                                             println("Введите степень тетрации в виде целого числа:")
-                                            val degree = readLine()!!.toInt()
-                                            tetration(userNumb, degree)
+                                            val tetra = Arithmetic(readLine()!!.toInt())
+                                            println("Введите целое число:")
+                                            tetra.secondNumb = readLine()!!.toLong()
+                                            tetra.tetration()
                                         }catch (n: NumberFormatException){
                                             println("Число и степень тетрации должны быть в виде целых чисел")
                                         }
@@ -97,12 +106,12 @@ fun main() {
                                     while (true) {
                                         try {
                                             println("Введите число, с которого начнется последовательность:")
-                                            val userNum = readLine()!!.toInt()
+                                            val progression = Arithmetic(readLine()!!.toInt())
                                             println("Введите разность арифметической прогрессии:")
-                                            val differenceProgress = readLine()!!.toInt()
+                                            progression.numb1 = readLine()!!.toInt()
                                             println("Введите длину последовательности:")
-                                            val memberNum = readLine()!!.toInt()
-                                            arithmeticProgression(userNum, differenceProgress, memberNum)
+                                            progression.numb2 = readLine()!!.toInt()
+                                            progression.arithmeticProgression()
                                         }catch (n: NumberFormatException){
                                             println("Все данные должны быть в виде целых чисел")
                                         }
@@ -111,28 +120,16 @@ fun main() {
                                     }
                                 }
                                 6 -> {
-                                    blockWithOneParam(
-                                        text = "Введите необходимую высоту треугольника Паскаля:",
-                                        func = ::trianglePaskal,
-                                        text1 = "Высота треугольника Паскаля должна быть в виде целого числа"
-                                    )
-                                }
-                                7 -> {
                                     while (true) {
                                         try {
-                                            println("Введите рост первого студента")
-                                            val height1 = readLine()!!.toFloat()
-                                            println("Введите рост второго студента")
-                                            val height2 = readLine()!!.toFloat()
-                                            heightComparison(
-                                                h1 = height1,
-                                                h2 = height2
-                                            )
+                                            println("Введите необходимую высоту треугольника Паскаля:")
+                                            val heightPaskal = Arithmetic(readLine()!!.toInt())
+                                            heightPaskal.trianglePaskal()
                                         }catch (n: NumberFormatException){
-                                        println("Некорректный ввод. Нужно ввести в виде чисел")
-                                    }
-                                    askRepeat()
-                                    if (readLine() == "0") break
+                                            println("Высота треугольника Паскаля должна быть в виде целого числа")
+                                        }
+                                        askRepeat()
+                                        if (readLine() == "0") break
                                     }
                                 }
                                 0 -> break
@@ -156,7 +153,7 @@ fun main() {
                 |3. Вывести первое и последнее число последовательности
                 |4. Сложить цифры целого числа
                 |5. Сколько раз встречается символ в тексте
-                |6. Вывести числа, делимые на 15 нацело
+                |6. Вывести числа, делимые на некое число нацело
                 |7. Проверить все ли числа последовательности уникальны
                 |8. Вывести самое частое и самое длинное слово из текста
                 |
@@ -168,7 +165,9 @@ fun main() {
                                     while (true) {
                                         try {
                                             println("Введи слово или число")
-                                            palindrom(incorrectWord(readLine()!!.toCharArray()))
+                                            val userStr = ArrayClasses(readLine()!!.toCharArray().toTypedArray())
+                                            userStr.incorrectWord()
+                                            userStr.palindrom()
                                         }catch (e: Exception){
                                             println(e.message)
                                         }
@@ -177,21 +176,24 @@ fun main() {
                                     }
                                 }
                                 2 -> {
-                                    blockWithOneParam(
-                                        text = "Введите количество секунд: ",
-                                        func = ::timeConverter,
-                                        text1 = "Количество секунд должно быть в виде целого числа"
-                                    )
+                                    while (true) {
+                                        try {
+                                            println("Введите количество секунд:")
+                                            val timeOClock = Arithmetic(readLine()!!.toInt())
+                                            timeOClock.timeConverter()
+                                        }catch (n: NumberFormatException){
+                                            println("Количество секунд должно быть в виде целого числа")
+                                        }
+                                        askRepeat()
+                                        if (readLine() == "0") break
+                                    }
                                 }
                                 3 -> {
                                     while (true) {
                                         try {
                                             println("Введите последовательность чисел через запятую:")
-                                            firstAndLastNumber(
-                                                convertToIntArray(
-                                                    readLine()!!.toCharArray().toTypedArray()
-                                                )
-                                            )
+                                            val numbers = ArrayClasses(readLine()!!.toCharArray().toTypedArray())
+                                            numbers.firstLastNumb()
                                         }catch (n: NumberFormatException){
                                             println("Нужно было ввести последовательность чисел через запятую без лишних символов")
                                         }
@@ -203,7 +205,8 @@ fun main() {
                                     while (true) {
                                         try {
                                             println("Введите целое число")
-                                            sumOfDigits(readLine()!!.toCharArray())
+                                            val number = ArrayClasses(readLine()!!.toCharArray().toTypedArray())
+                                            number.sumOfDigits()
                                         }catch (i: IllegalArgumentException){
                                             println("Нужно вводить одно целое число без пробелов и различных знаков препинания")
                                         }
@@ -215,10 +218,9 @@ fun main() {
                                     while (true) {
                                         try {
                                             println("Введите текст")
-                                            val textUser = readLine()!!.toCharArray()
+                                            val textUser = ArrayClasses(readLine()!!.toCharArray().toTypedArray())
                                             println("Введите символ, который хотите проверить")
-                                            val symbUser = readLine()!![0]
-                                            howManySymb(textUser, symbUser)
+                                            textUser.howManySymb(readLine()!![0])
                                         }catch (s: StringIndexOutOfBoundsException){
                                             println("Надо было ввести текст")
                                         }
@@ -230,10 +232,10 @@ fun main() {
                                     while (true) {
                                         try {
                                             println("Введите последовательность чисел через запятую")
-                                            val numbers = convertToIntArray(readLine()!!.toCharArray().toTypedArray()).toIntArray()
+                                            val numbers = ArrayClasses(readLine()!!.toCharArray().toTypedArray())
                                             println("Введите число - делитель")
                                             val divider = readLine()!!.toInt()
-                                            divideOperation(*numbers){it % divider}
+                                            numbers.divideOperation { it % divider }
                                         }catch (n: NumberFormatException) {
                                             println("Нужно было ввести последовательность чисел через запятую без лишних символов")
                                         }
@@ -245,7 +247,8 @@ fun main() {
                                     while (true) {
                                         try {
                                             println("Введите последовательность чисел через запятую")
-                                            uniqueNumbers(convertToIntArray(readLine()!!.toCharArray().toTypedArray()))
+                                            val numbers = ArrayClasses(readLine()!!.toCharArray().toTypedArray())
+                                            numbers.uniqueNumbers()
                                         }catch (n: NumberFormatException) {
                                             println("Нужно было ввести последовательность чисел через запятую без лишних символов")
                                         }
@@ -257,11 +260,8 @@ fun main() {
                                     while (true) {
                                         try {
                                             println("Введите текст в нижнем регистре")
-                                            wordOftenAndLonger(
-                                                convertToStringArray(
-                                                    readLine()!!.toCharArray().toTypedArray()
-                                                )
-                                            )
+                                            val text = ArrayClasses(readLine()!!.toCharArray().toTypedArray())
+                                            text.wordOftenAndLonger()
                                         }catch (e: Exception){
                                             println("Программа принимает текст в нижнем регистре,с одним пробелом между словами, примитивными знаками препинания.")
                                         }
@@ -271,8 +271,8 @@ fun main() {
                                 }
                                 0 -> break
                             }
-                        } catch (n: NumberFormatException){
-                            println("Нужно ввести число")
+                        } catch (n: NumberFormatException) {
+                            println("Нужно ввести число234")
                         } catch (e: Exception) {
                             println(e.message)
                         }
@@ -281,10 +281,12 @@ fun main() {
                     0 -> break
                 }
             } catch (n: NumberFormatException) {
-                println("Нужно ввести число")
+                println("Нужно ввести число123")
             } catch (e: Exception) {
                 println(e.message)
             }
     }
 }
+
+
 
